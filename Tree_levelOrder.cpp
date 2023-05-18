@@ -60,30 +60,26 @@ public:
 
     */
 
-    void preOrder(Node *root)
+    void levelOrder(Node *root)
     {
-        // if (root == NULL)
-        //     return;
-        // cout << root->data << " ";
-        // preOrder(root->left);
-        // preOrder(root->right);
-        // Có đệ quy
         if (root == NULL)
-            return;
-        stack<Node *> s;
-        s.push(root);
-        while (!s.empty())
         {
-            Node *current = s.top();
-            s.pop();
+            return;
+        }
+        queue<Node *> q;
+        q.push(root);
+        while (!q.empty())
+        {
+            Node *current = q.front();
+            q.pop();
             cout << current->data << " ";
-            if (current->right)
+            if (current->left != NULL)
             {
-                s.push(current->right);
+                q.push(current->left);
             }
-            if (current->left)
+            if (current->right != NULL)
             {
-                s.push(current->left);
+                q.push(current->right);
             }
         }
     }
@@ -107,7 +103,7 @@ int main()
         root = myTree.insert(root, data);
     }
 
-    myTree.preOrder(root);
+    myTree.levelOrder(root);
 
     return 0;
 }

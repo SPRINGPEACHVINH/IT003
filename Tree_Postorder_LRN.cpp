@@ -64,9 +64,25 @@ public:
     {
         if (root == NULL)
             return;
-        postOrder(root->left);
-        postOrder(root->right);
-        cout << root->data << " ";
+        // postOrder(root->left);
+        // postOrder(root->right);
+        // cout << root->data << " ";
+        stack<Node *> s;
+        s.push(root);
+        while (!s.empty())
+        {
+            Node *current = s.top();
+            s.pop();
+            if (current->left)
+            {
+                s.push(current->left);
+            }
+            if (current->right)
+            {
+                s.push(current->right);
+            }
+            cout << current->data << " ";
+        }
     }
 
 }; // End of Solution
