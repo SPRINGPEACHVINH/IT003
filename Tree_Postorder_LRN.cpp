@@ -67,25 +67,33 @@ public:
         // postOrder(root->left);
         // postOrder(root->right);
         // cout << root->data << " ";
+
         stack<Node *> s;
-        s.push(root);
-        while (!s.empty())
+        Node *current = root;
+        Node *temp = NULL;
+        while (current != NULL || !s.empty())
         {
-            Node *current = s.top();
-            s.pop();
-            if (current->left)
+            // Thêm tất cả các nút bên trái của cây con trái vào stack
+            while (current != NULL)
             {
-                s.push(current->left);
+                s.push(current);
+                current = current->left;
             }
-            if (current->right)
+            current = s.top();
+            if (current->right == NULL || current->right == temp)
             {
-                s.push(current->right);
+                cout << current->data << " ";
+                s.pop();
+                temp = current;
+                current = NULL;
             }
-            cout << current->data << " ";
+            else
+            {
+                current = current->right;
+            }
         }
     }
-
-}; // End of Solution
+};
 
 int main()
 {
