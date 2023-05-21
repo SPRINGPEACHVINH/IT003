@@ -46,10 +46,9 @@ public:
     {
         if (root == NULL)
         {
-            Node *newNode = new Node(data); // sử dụng hàm tạo có tham số để khởi tạo nút mới
+            Node *newNode = new Node(data);
             return newNode;
         }
-
         if (data < root->data)
         {
             root->left = insert(root->left, data);
