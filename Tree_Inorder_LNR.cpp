@@ -1,7 +1,5 @@
-
 #include <bits/stdc++.h>
 using namespace std;
-
 class Node
 {
 public:
@@ -64,11 +62,24 @@ public:
     {
         if (root == NULL)
             return;
-        inOrder(root->left);
-        cout << root->data << " ";
-        inOrder(root->right);
+        // inOrder(root->left);
+        // cout << root->data << " ";
+        // inOrder(root->right);
+        stack<Node *> s;
+        Node *cur = root;
+        while (cur != NULL || !s.empty())
+        {
+            while (cur != NULL)
+            {
+                s.push(cur);
+                cur = cur->left;
+            }
+            cur = s.top();
+            s.pop();
+            cout << cur->data << " ";
+            cur = cur->right;
+        }
     }
-
 }; // End of Solution
 
 int main()
