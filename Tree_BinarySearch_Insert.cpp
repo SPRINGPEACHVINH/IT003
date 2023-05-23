@@ -49,50 +49,31 @@ public:
             Node *newNode = new Node(data);
             return newNode;
         }
-        // if (data < root->data)
-        // {
-        //     root->left = insert(root->left, data);
-        // }
-        // else
-        // {
-        //     root->right = insert(root->right, data);
-        // }
         Node *current = root;
-        stack<Node *> s;
-        while (current != NULL || !s.empty())
+        while (current != NULL)
         {
-            if (current != NULL)
+            if (data <= current->data)
             {
-                s.push(current);
-                current = current->left;
+                if (current->left == NULL)
+                {
+                    current->left = new Node(data);
+                    break;
+                }
+                else
+                    current = current->left;
             }
             else
             {
-                current = s.top();
-                s.pop();
-                if (data <= current->data)
+                if (current->right == NULL)
                 {
-                    if (current->left == NULL)
-                    {
-                        current->left = new Node(data);
-                        break;
-                    }
-                    else
-                        current = current->left;
+                    current->right = new Node(data);
+                    break;
                 }
                 else
-                {
-                    if (current->right == NULL)
-                    {
-                        current->right = new Node(data);
-                        break;
-                    }
-                    else
-                        current = current->right;
-                }
+                    current = current->right;
             }
         }
-        return current;
+        return root;
     }
 };
 int main()
