@@ -16,7 +16,7 @@ int main()
         auto it = database.find(username);
         if (it != database.end())
         {
-            it->second = password;
+            it->second = it->second + " " + password;
         }
         else
         {
