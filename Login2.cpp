@@ -1,13 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
 int main()
 {
     int n, q;
     cin >> n >> q;
-    vector<string> user;
-    user.resize(q);
-    map<string, string> database;
+    vector<string> user(q);
+    unordered_map<string, string> database;
 
     for (int i = 1; i <= n; i++)
     {
@@ -16,7 +17,7 @@ int main()
         auto it = database.find(username);
         if (it != database.end())
         {
-            it->second = it->second + " " + password;
+            it->second += " " + password;
         }
         else
         {
@@ -24,12 +25,12 @@ int main()
         }
     }
 
-    for (int i = 0; i < user.size(); i++)
+    for (int i = 0; i < q; i++)
     {
         cin >> user[i];
     }
 
-    for (int i = 0; i < user.size(); i++)
+    for (int i = 0; i < q; i++)
     {
         auto it = database.find(user[i]);
         if (it != database.end())
